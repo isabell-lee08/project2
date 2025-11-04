@@ -26,17 +26,19 @@ function displaySquirrel(data) {
             L.marker([data[i].y, data[i].x], { icon: squirrelIcon }).addTo(map);
         }
 
-        //cinnamon squirrel
-        if (data[i].primary_fur_color == 'Cinnamon') {
-            makeSquirrelIcon('images/squirrel_cinnamon.png')
-        }
-        //gray squirrel
-        if (data[i].primary_fur_color == 'Gray') {
-            makeSquirrelIcon('images/squirrel_gray.png')
-        }
-        //black squirrel
-        if (data[i].primary_fur_color == 'Black') {
-            makeSquirrelIcon('images/squirrel_black.png')
+        switch (data[i].primary_fur_color) {
+            case 'Cinnamon':
+                makeSquirrelIcon('images/squirrel_cinnamon.png');
+                break;
+            case 'Gray':
+                makeSquirrelIcon('images/squirrel_gray.png');
+                break;
+            case 'Black':
+                makeSquirrelIcon('images/squirrel_black.png');
+                break;
+            // some squirrels have no fur color value
+            default:
+                makeSquirrelIcon('images/squirrel_none.png');
         }
     }
 }
