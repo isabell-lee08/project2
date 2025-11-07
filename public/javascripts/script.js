@@ -4,7 +4,8 @@ async function getSquirrelData(url) {
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);
-        displaySquirrel(data)
+        displaySquirrel(data);
+        tableSquirrel(data);
 
     } catch (error) {
         console.error(error);
@@ -12,6 +13,23 @@ async function getSquirrelData(url) {
 }
 
 getSquirrelData('https://data.cityofnewyork.us/resource/vfnx-vebw.json?$$app_token=IK8DqGYziEQa9OENUbfMRZFzU');
+
+function tableSquirrel(data) {
+    const squirrelTable = new Tabulator("#squirrelTable", {
+        data: data,
+        layout:"fitDataStretch",
+        pagination: true,
+        paginationSize: 25,
+        paginationCounter: "rows",
+        columns: [
+            {title: "Unique Squirrel ID", field:"unique_squirrel_id", minWidth:200},
+            {title: "Age", field:"age"},
+            {title: "Location", field:"location"},
+            {title: "Primary Fur Color", field:"primary_fur_color"}
+        ],
+    });
+}
+
 
 // markers for squirrels
 function displaySquirrel(data) {
@@ -44,7 +62,7 @@ function displaySquirrel(data) {
 }
 
 // map
-var map = L.map('map').setView([40.7826, -73.9656], 15);
+var map = L.map('map').setView([40.7826, -73.9656], 16);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 25,
