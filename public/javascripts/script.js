@@ -1,31 +1,40 @@
 // fetch squirrel data
 async function getSquirrelData(url) {
+    let data = [];
     try {
         const response = await fetch(url);
-        const data = await response.json();
+        data = await response.json();
         console.log(data);
-        displaySquirrel(data);
-        tableSquirrel(data);
+
+        if (localStorage.getItem('squirrelData')) {
+            data = JSON.parse(localStorage.getItem('squirrelData'));
+            console.log(data);
+            console.log('localStorage works')
+        } else {
+            localStorage.setItem('squirrelData', JSON.stringify(data));
+        }
 
     } catch (error) {
         console.error(error);
     }
+    displaySquirrel(data);
+    tableSquirrel(data);
 }
 
-getSquirrelData('https://data.cityofnewyork.us/resource/vfnx-vebw.json?$$app_token=IK8DqGYziEQa9OENUbfMRZFzU');
+getSquirrelData('/api/squirrel');
 
 function tableSquirrel(data) {
     const squirrelTable = new Tabulator("#squirrelTable", {
         data: data,
-        layout:"fitDataStretch",
+        layout: "fitDataStretch",
         pagination: true,
         paginationSize: 25,
         paginationCounter: "rows",
         columns: [
-            {title: "Unique Squirrel ID", field:"unique_squirrel_id", minWidth:200},
-            {title: "Age", field:"age"},
-            {title: "Location", field:"location"},
-            {title: "Primary Fur Color", field:"primary_fur_color"}
+            { title: "Unique Squirrel ID", field: "unique_squirrel_id", minWidth: 200 },
+            { title: "Age", field: "age" },
+            { title: "Location", field: "location" },
+            { title: "Primary Fur Color", field: "primary_fur_color" }
         ],
     });
 }
