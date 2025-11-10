@@ -29,6 +29,7 @@ function tableSquirrel(data) {
         layout: "fitDataStretch",
         pagination: true,
         paginationSize: 25,
+        selectableRows: 1,
         paginationCounter: "rows",
         columns: [
             { title: "Unique Squirrel ID", field: "unique_squirrel_id", minWidth: 200 },
@@ -36,6 +37,13 @@ function tableSquirrel(data) {
             { title: "Location", field: "location" },
             { title: "Primary Fur Color", field: "primary_fur_color" }
         ],
+    });
+
+    squirrelTable.on("rowClick", function (e, row) {
+        let selectedSquirrelX = (row.getData().x);
+        let selectedSquirrelY = (row.getData().y);
+
+        map.flyTo([selectedSquirrelY, selectedSquirrelX], 19);
     });
 }
 
