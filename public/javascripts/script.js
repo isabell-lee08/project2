@@ -8,8 +8,6 @@ async function getSquirrelData(url) {
 
         if (localStorage.getItem('squirrelData')) {
             data = JSON.parse(localStorage.getItem('squirrelData'));
-            console.log(data);
-            console.log('localStorage works')
         } else {
             localStorage.setItem('squirrelData', JSON.stringify(data));
         }
@@ -31,9 +29,11 @@ function tableSquirrel(data) {
         data: data,
         layout: "fitDataStretch",
         pagination: true,
-        paginationSize: 25,
+        paginationSize: 5,
         selectableRows: 1,
         paginationCounter: "rows",
+        progressiveRender: true,
+        ajaxFiltering: true,
         columns: [
             { title: "Unique Squirrel ID", field: "unique_squirrel_id", minWidth: 200 },
             { title: "Age", field: "age" },
@@ -82,6 +82,13 @@ function displaySquirrel(data) {
                 makeSquirrelIcon('images/squirrel_undefinedfur.png');
         }
 
+        // reset filter
+        const resetButton = document.getElementById("reset");
+        resetButton.addEventListener('click', function () {
+            makeSquirrelIcon('images/squirrel_' + data[i].primary_fur_color + 'fur.png');
+            squirrelTable.clearFilter();
+        })
+
         // sort by
         const sortBy = document.getElementById("choice_choices");
         sortBy.addEventListener('change', function () {
@@ -128,9 +135,6 @@ function displaySquirrel(data) {
                         squirrelTable.setFilter("age", "=", undefined);
                     }
                     break;
-                case 'Default':
-                    makeSquirrelIcon('images/squirrel_' + data[i].primary_fur_color + 'fur.png');
-                    squirrelTable.clearFilter();
             }
         })
 
@@ -159,9 +163,6 @@ function displaySquirrel(data) {
                         squirrelTable.setFilter("location", "=", undefined);
                     }
                     break;
-                case 'Default':
-                    makeSquirrelIcon('images/squirrel_' + data[i].primary_fur_color + 'fur.png');
-                    squirrelTable.clearFilter();
             }
         })
 
@@ -196,9 +197,6 @@ function displaySquirrel(data) {
                         squirrelTable.setFilter("primary_fur_color", "=", undefined);
                     }
                     break;
-                case 'Default':
-                    makeSquirrelIcon('images/squirrel_' + data[i].primary_fur_color + 'fur.png');
-                    squirrelTable.clearFilter();
             }
         })
     }
