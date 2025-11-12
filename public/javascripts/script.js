@@ -23,8 +23,11 @@ async function getSquirrelData(url) {
 
 getSquirrelData('/api/squirrel');
 
+let squirrelTable = '';
+
+// table
 function tableSquirrel(data) {
-    const squirrelTable = new Tabulator("#squirrelTable", {
+    squirrelTable = new Tabulator("#squirrelTable", {
         data: data,
         layout: "fitDataStretch",
         pagination: true,
@@ -52,29 +55,152 @@ function tableSquirrel(data) {
 function displaySquirrel(data) {
     for (let i = 0; i < data.length; i++) {
 
+        let layerGroup = L.layerGroup();
+
         function makeSquirrelIcon(imgcolor) {
             const squirrelIcon = L.icon({
                 iconUrl: imgcolor,
                 iconSize: [30, 30],
                 popupAnchor: [-3, -76],
             });
-            L.marker([data[i].y, data[i].x], { icon: squirrelIcon }).addTo(map);
+            let squirrelMarker = L.marker([data[i].y, data[i].x], { icon: squirrelIcon }).addTo(map);
+            layerGroup = L.layerGroup([squirrelMarker]).addTo(map);
         }
 
         switch (data[i].primary_fur_color) {
             case 'Cinnamon':
-                makeSquirrelIcon('images/squirrel_cinnamon.png');
+                makeSquirrelIcon('images/squirrel_Cinnamon.png');
                 break;
             case 'Gray':
-                makeSquirrelIcon('images/squirrel_gray.png');
+                makeSquirrelIcon('images/squirrel_Gray.png');
                 break;
             case 'Black':
-                makeSquirrelIcon('images/squirrel_black.png');
+                makeSquirrelIcon('images/squirrel_Black.png');
                 break;
             // some squirrels have no fur color value
-            default:
-                makeSquirrelIcon('images/squirrel_none.png');
+            case undefined:
+                makeSquirrelIcon('images/squirrel_undefined.png');
         }
+
+        // sort by
+        const sortBy = document.getElementById("choice_choices");
+        sortBy.addEventListener('change', function () {
+            for (let element of document.getElementsByClassName("sorters")) {
+                element.style.display = "none";
+            }
+            switch (this.value) {
+                case 'Default':
+                    break;
+                case 'Age':
+                    document.getElementById("age_dropdown").style.display = "block";
+                    break;
+                case 'Location':
+                    document.getElementById("location_dropdown").style.display = "block";
+                    break;
+                case 'Color':
+                    document.getElementById("color_dropdown").style.display = "block";
+                    break;
+            }
+        })
+
+        // sort by age
+        const sortAge = document.getElementById("age_choices");
+        sortAge.addEventListener('change', function () {
+            layerGroup.remove();
+            let selectedAge = sortAge.value;
+
+            switch (selectedAge) {
+                case 'Adult':
+                    if (data[i].age == 'Adult') {
+                        makeSquirrelIcon('images/squirrel_' + data[i].primary_fur_color + '.png');
+                        squirrelTable.setFilter("age", "=", "Adult");
+                    }
+                    break;
+                case 'Juvenile':
+                    if (data[i].age == 'Juvenile') {
+                        makeSquirrelIcon('images/squirrel_' + data[i].primary_fur_color + '.png');
+                        squirrelTable.setFilter("age", "=", "Juvenile");
+                    }
+                    break;
+                case 'None':
+                    if (data[i].age == undefined) {
+                        makeSquirrelIcon('images/squirrel_' + data[i].primary_fur_color + '.png');
+                        squirrelTable.setFilter("age", "=", undefined);
+                    }
+                    break;
+                case 'Default':
+                    makeSquirrelIcon('images/squirrel_' + data[i].primary_fur_color + '.png');
+                    squirrelTable.clearFilter();
+            }
+        })
+
+        // sort by location
+        const sortLocation = document.getElementById("location_choices");
+        sortLocation.addEventListener('change', function () {
+            layerGroup.remove();
+            let selectedLocation = sortLocation.value;
+
+            switch (selectedLocation) {
+                case 'Above_Ground':
+                    if (data[i].location == 'Above Ground') {
+                        makeSquirrelIcon('images/squirrel_' + data[i].primary_fur_color + '.png');
+                        squirrelTable.setFilter("location", "=", "Above Ground");
+                    }
+                    break;
+                case 'Ground_Plane':
+                    if (data[i].location == 'Ground Plane') {
+                        makeSquirrelIcon('images/squirrel_' + data[i].primary_fur_color + '.png');
+                        squirrelTable.setFilter("location", "=", "Ground Plane");
+                    }
+                    break;
+                case 'None':
+                    if (data[i].location == undefined) {
+                        makeSquirrelIcon('images/squirrel_' + data[i].primary_fur_color + '.png');
+                        squirrelTable.setFilter("location", "=", undefined);
+                    }
+                    break;
+                case 'Default':
+                    makeSquirrelIcon('images/squirrel_' + data[i].primary_fur_color + '.png');
+                    squirrelTable.clearFilter();
+            }
+        })
+
+        // sort by color
+        const sortColor = document.getElementById("color_choices");
+        sortColor.addEventListener('change', function () {
+            layerGroup.remove();
+            let selectedColor = sortColor.value;
+
+            switch (selectedColor) {
+                case 'Cinnamon':
+                    if (data[i].primary_fur_color == 'Cinnamon') {
+                        makeSquirrelIcon('images/squirrel_Cinnamon.png');
+                        squirrelTable.setFilter("primary_fur_color", "=", "Cinnamon");
+                    }
+                    break;
+                case 'Gray':
+                    if (data[i].primary_fur_color == 'Gray') {
+                        makeSquirrelIcon('images/squirrel_Gray.png');
+                        squirrelTable.setFilter("primary_fur_color", "=", "Gray");
+                    }
+                    break;
+                case 'Black':
+                    if (data[i].primary_fur_color == 'Black') {
+                        makeSquirrelIcon('images/squirrel_Black.png');
+                        squirrelTable.setFilter("primary_fur_color", "=", "Black");
+                    }
+                    break;
+                case 'None':
+                    if (data[i].primary_fur_color == undefined) {
+                        makeSquirrelIcon('images/squirrel_undefined.png');
+                        squirrelTable.setFilter("primary_fur_color", "=", undefined);
+                    }
+                    break;
+                case 'Default':
+                    makeSquirrelIcon('images/squirrel_' + data[i].primary_fur_color + '.png');
+                    squirrelTable.clearFilter();
+            }
+        })
     }
 }
 
