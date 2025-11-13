@@ -99,13 +99,13 @@ function displaySquirrel(data) {
                 case 'Default':
                     break;
                 case 'Age':
-                    document.getElementById("age_dropdown").style.display = "block";
+                    document.getElementById("age_dropdown").style.display = "inline";
                     break;
                 case 'Location':
-                    document.getElementById("location_dropdown").style.display = "block";
+                    document.getElementById("location_dropdown").style.display = "inline";
                     break;
                 case 'Color':
-                    document.getElementById("color_dropdown").style.display = "block";
+                    document.getElementById("color_dropdown").style.display = "inline";
                     break;
             }
         })

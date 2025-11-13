@@ -1,55 +1,56 @@
-<h1>{{title}}</h1>
+<header>
+    <h1>{{title}}</h1>
+</header>
 
 <div class="container">
-    <div>
-        <button id="reset">Reset filter</button>
+    <div class="content">
+        <div class="overview">
+            <p>Using NYC data gathered in 2018, this map and table visualizes squirrel sightings in Central Park.</p>
+            <p>To examine a squirrel, click an icon on the map, or select a row from the table below.</p>
+        </div>
+        <div class="filter_controls">
+            <button id="reset">Reset filter</button>
+            <label for="choices">Sort by:</label>
+            <select name="choice_choices" id="choice_choices">
+                <option value=""></option>
+                <option value="Age">Age</option>
+                <option value="Location">Location</option>
+                <option value="Color">Color</option>
+            </select>
+            <div id="age_dropdown" class="sorters">
+                <label for="age">Choose age:</label>
+                <select name="age_choices" id="age_choices">
+                    <option selected="true" disabled="true" value=""></option>
+                    <option value="Juvenile">Juvenile</option>
+                    <option value="Adult">Adult</option>
+                    <option value="None">No value</option>
+                </select>
+            </div>
+            <div id="location_dropdown" class="sorters">
+                <label for="location">Choose location:</label>
+                <select name="location_choices" id="location_choices">
+                    <option selected="true" disabled="true" value=""></option>
+                    <option value="Above_Ground">Above ground</option>
+                    <option value="Ground_Plane">Ground plane</option>
+                    <option value="None">No value</option>
+                </select>
+            </div>
+            <div id="color_dropdown" class="sorters">
+                <label for="colors">Choose color:</label>
+                <select name="color_choices" id="color_choices">
+                    <option selected="true" disabled="true" value=""></option>
+                    <option value="Cinnamon">Cinnamon</option>
+                    <option value="Gray">Gray</option>
+                    <option value="Black">Black</option>
+                    <option value="None">No value</option>
+                </select>
+            </div>
+        </div>
 
-        <label for="choices">Sort by:</label>
-        <select name="choice_choices" id="choice_choices">
-            <option value=""></option>
-            <option value="Age">Age</option>
-            <option value="Location">Location</option>
-            <option value="Color">Color</option>
-        </select>
+        <div id="map"></div>
+
+        <div id="squirrelTable"></div>
     </div>
-
-    <div>
-        <div id="age_dropdown" class="sorters">
-            <label for="age">Choose age:</label>
-            <select name="age_choices" id="age_choices">
-                <option selected="true" disabled="true" value=""></option>
-                <option value="Juvenile">Juvenile</option>
-                <option value="Adult">Adult</option>
-                <option value="None">No value</option>
-            </select>
-        </div>
-
-        <div id="location_dropdown" class="sorters">
-            <label for="location">Choose location:</label>
-            <select name="location_choices" id="location_choices">
-                <option selected="true" disabled="true" value=""></option>
-                <option value="Above_Ground">Above ground</option>
-                <option value="Ground_Plane">Ground plane</option>
-                <option value="None">No value</option>
-            </select>
-        </div>
-
-        <div id="color_dropdown" class="sorters">
-            <label for="colors">Choose color:</label>
-            <select name="color_choices" id="color_choices">
-                <option selected="true" disabled="true" value=""></option>
-                <option value="Cinnamon">Cinnamon</option>
-                <option value="Gray">Gray</option>
-                <option value="Black">Black</option>
-                <option value="None">No value</option>
-            </select>
-        </div>
-
-    </div>
-
-    <div id="map"></div>
-
-    <div id="squirrelTable"></div>
 </div>
 
 <script src="/javascripts/script.js"></script>
