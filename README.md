@@ -1,4 +1,4 @@
-<img width="100" height="124" alt="image" src="https://github.com/user-attachments/assets/5e8657bb-9fc5-494a-a828-5ff20a21aba3" /># MEDP33100 - Project 2 Data Visualization
+## MEDP33100 - Project 2 Data Visualization
 
 ## Team members
 
