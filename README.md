@@ -11,12 +11,15 @@
 
 ## Project Overview
 
-- Briefly describe the purpose of the project.
-- Explain what live data set was used, and what you hope users would learn about the data set by using your project
+- The purpose of our project is to visualize a database relevant to us and its users, and allow for interaction from those users.
+- Our project used the NYC Open Data for squirrels in Central Park. We hope our users come to appreciate the details of our furry friends here in the city.
 
 ## Features
 
-- List all (at least 3) distinct types of user interaction, such as filtering, sorting, modifying data views, or changing the data presentation.
+- Interactable map to select squirrels
+- Filter squirrels based on age, location, or color
+- Interactable table to sort and select rows
+
 
 ## Technologies Used
 
@@ -24,7 +27,7 @@
     - **Languages**: HTML, CSS, JavaScript
     - **Libraries**: Leaflet, for the map / Tabulator, for the data table
     - **APIs**: <a href="https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw/about_data" title="Squirrel database">Central Park Squirrel Data - NYC Open Data</a>
-    - **Other**: Canva for slides
+    - **Other**: Figma for mockup, Canva for slides
 
 ## Credits
 
