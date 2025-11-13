@@ -29,7 +29,7 @@ function tableSquirrel(data) {
         data: data,
         layout: "fitDataStretch",
         pagination: true,
-        paginationSize: 5,
+        paginationSize: 8,
         selectableRows: 1,
         paginationCounter: "rows",
         progressiveRender: true,
@@ -42,11 +42,30 @@ function tableSquirrel(data) {
         ],
     });
 
+    // click on table row, take to that squirrel + show popup
     squirrelTable.on("rowClick", function (e, row) {
         let selectedSquirrelX = (row.getData().x);
         let selectedSquirrelY = (row.getData().y);
 
         map.flyTo([selectedSquirrelY, selectedSquirrelX], 19);
+
+        function makeSquirrelIcon() {
+            let squirrelDivIcon = L.divIcon({
+                className: 'squirrelTableInt',
+                popupAnchor: [-3, -20],
+            });
+
+            let squirrelMarker = L.marker([selectedSquirrelY, selectedSquirrelX], { icon: squirrelDivIcon }).addTo(map);
+
+            squirrelMarker.bindPopup(
+                '<b>UNIQUE SQUIRREL ID</b>: ' + row.getData().unique_squirrel_id + '<br>' +
+                '<b>LATITUDE</b>: ' + selectedSquirrelY + '<br>' +
+                '<b>LONGITUDE</b>: '+ selectedSquirrelX + '<br>' +
+                '<b>AGE</b>: ' + row.getData().age + '<br>' +
+                '<b>LOCATION</b>: ' + row.getData().location + '<br>' +
+                '<b>PRIMARY FUR COLOR</b>: ' + row.getData().primary_fur_color).openPopup();
+        }
+        makeSquirrelIcon();
     });
 }
 
@@ -61,10 +80,23 @@ function displaySquirrel(data) {
             const squirrelIcon = L.icon({
                 iconUrl: imgcolor,
                 iconSize: [30, 30],
-                popupAnchor: [-3, -76],
+                popupAnchor: [-3, -20],
             });
             let squirrelMarker = L.marker([data[i].y, data[i].x], { icon: squirrelIcon }).addTo(map);
             layerGroup = L.layerGroup([squirrelMarker]).addTo(map);
+
+            // click on squirrel, take to squirrel + show popup
+            squirrelMarker.on('click', function (e) {
+                map.flyTo([squirrelMarker.getLatLng().lat, squirrelMarker.getLatLng().lng], 19);
+                
+                squirrelMarker.bindPopup(
+                    '<b>UNIQUE SQUIRREL ID</b>: ' + data[i].unique_squirrel_id + '<br>' +
+                    '<b>LATITUDE</b>: ' + squirrelMarker.getLatLng().lat + '<br>' +
+                    '<b>LONGITUDE</b>: ' + squirrelMarker.getLatLng().lng + '<br>' +
+                    '<b>AGE</b>: ' + data[i].age + '<br>' +
+                    '<b>LOCATION</b>: ' + data[i].location + '<br>' +
+                    '<b>PRIMARY FUR COLOR</b>: ' + data[i].primary_fur_color).openPopup();
+            })
         }
 
         switch (data[i].primary_fur_color) {
@@ -89,31 +121,16 @@ function displaySquirrel(data) {
             squirrelTable.clearFilter();
         })
 
-        // sort by
+        // sort by refresh
         const sortBy = document.getElementById("choice_choices");
         sortBy.addEventListener('change', function () {
-            for (let element of document.getElementsByClassName("sorters")) {
-                element.style.display = "none";
-            }
-            switch (this.value) {
-                case 'Default':
-                    break;
-                case 'Age':
-                    document.getElementById("age_dropdown").style.display = "inline";
-                    break;
-                case 'Location':
-                    document.getElementById("location_dropdown").style.display = "inline";
-                    break;
-                case 'Color':
-                    document.getElementById("color_dropdown").style.display = "inline";
-                    break;
-            }
+            layerGroup.closePopup();
         })
 
         // sort by age
         const sortAge = document.getElementById("age_choices");
         sortAge.addEventListener('change', function () {
-            layerGroup.remove();
+            layerGroup.clearLayers();
             let selectedAge = sortAge.value;
 
             switch (selectedAge) {
@@ -141,7 +158,7 @@ function displaySquirrel(data) {
         // sort by location
         const sortLocation = document.getElementById("location_choices");
         sortLocation.addEventListener('change', function () {
-            layerGroup.remove();
+            layerGroup.clearLayers();
             let selectedLocation = sortLocation.value;
 
             switch (selectedLocation) {
@@ -169,7 +186,7 @@ function displaySquirrel(data) {
         // sort by color
         const sortColor = document.getElementById("color_choices");
         sortColor.addEventListener('change', function () {
-            layerGroup.remove();
+            layerGroup.clearLayers();
             let selectedColor = sortColor.value;
 
             switch (selectedColor) {
@@ -220,11 +237,11 @@ sortSelect.addEventListener("change", () => {
 
   // show only the selected one
   if (choice === "Age") {
-    document.getElementById("age_dropdown").style.display = "block";
+    document.getElementById("age_dropdown").style.display = "inline";
   } else if (choice === "Location") {
-    document.getElementById("location_dropdown").style.display = "block";
+    document.getElementById("location_dropdown").style.display = "inline";
   } else if (choice === "Color") {
-    document.getElementById("color_dropdown").style.display = "block";
+    document.getElementById("color_dropdown").style.display = "inline";
   }
 });
 
