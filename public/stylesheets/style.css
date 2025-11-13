@@ -1,19 +1,11 @@
-
 body {
   padding: 0;
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background-color: #f7f7f7;
-  text-align: center;
-}
-
-/* sorts */
-#age_dropdown, #location_dropdown, #color_dropdown {
-  display: none;
-}
-
-.sorters {
-  display: none;
+  background-color: #c6ec84e3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Header */
@@ -26,22 +18,52 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
+  width: 100%;
+  text-align: center;
 }
 
-/* Map container */
+/* Main layout */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: 90%;
+  margin-top: 20px;
+  padding-bottom: 30px;
+  flex-wrap: wrap; 
+}
+
+/* Map */
 #map {
-  width: 100vw;
-  height: 50em;
+  flex: 2 1 60%;
+  height: 30em; /* smaller height so table fits */
   border: 4px solid #fff;
+  border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Sidebar for filters */
+/* Table */
+table {
+  flex: 1 1 35%;
+  max-width: 35%;
+  background: white;
+  border-collapse: collapse;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  color: black;
+  height: 30em;
+  overflow-y: auto;
+  display: block;
+}
+
+/* Controls */
 #controls {
   position: absolute;
   top: 90px;
   left: 20px;
-  background: rgb(0, 0, 0);
+  background: black;
+  color: white;
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
@@ -60,7 +82,6 @@ button {
   border: none;
   padding: 8px;
   margin-top: 8px;
-  width: fit-content;
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
@@ -69,40 +90,7 @@ button {
 button:hover {
   background-color: #4d908e;
 }
-
-#reset {
-  color: white;
-}
-
-/* table */
-#squirrelTable {
-  color: black;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-main {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-#map {
-  flex: 2 1 65%;
-}
-
-table {
-  flex: 1 1 35%;
-  max-width: 35%;
-  background: white;
-  border-collapse: collapse;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+.sorters {
+  display: none;
+  margin-top: 8px;
 }

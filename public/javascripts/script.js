@@ -209,3 +209,26 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 25,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
+const sortSelect = document.getElementById("choice_choices");
+const sorters = document.querySelectorAll(".sorters");
+
+sortSelect.addEventListener("change", () => {
+  const choice = sortSelect.value;
+
+  // hide all filters first
+  sorters.forEach(div => div.style.display = "none");
+
+  // show only the selected one
+  if (choice === "Age") {
+    document.getElementById("age_dropdown").style.display = "block";
+  } else if (choice === "Location") {
+    document.getElementById("location_dropdown").style.display = "block";
+  } else if (choice === "Color") {
+    document.getElementById("color_dropdown").style.display = "block";
+  }
+});
+
+document.getElementById("reset").addEventListener("click", () => {
+  sorters.forEach(div => div.style.display = "none");
+  sortSelect.value = "";
+});
