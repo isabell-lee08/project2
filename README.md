@@ -23,15 +23,15 @@
 
 - List the technologies and tools used in the project:
     - **Languages**: HTML, CSS, JavaScript
-    - **Libraries**: (e.g., GSAP for animations)
-    - **APIs**: Public APIs where the data set comes from
-    - **Other**: Figma for design, Adobe Illustrator for illustrations, OpenAI for A.I. generated assets, etc.
+    - **Libraries**: Leaflet, for the map / Tabulator, for the data table
+    - **APIs**: <a href="https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw/about_data" title="Squirrel database">Central Park Squirrel Data - NYC Open Data</a>
+    - **Other**: Canva for slides
 
 ## Credits
 
-- List any third-party assets used in the project (e.g., sound effects, images, fonts) and provide proper attribution.
-- Acknowledge any resources, tutorials, or references you used to help complete the project.
-- <a href="https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw/about_data" title="Squirrel database">Central Park Squirrel Data - NYC Open Data</a>
+- Substack, for coding examples and help
+- Leaflet / Tabulator documentation
+- <a href=https://data.cityofnewyork.us/Environment/2018-Squirrel-Census-Fur-Color-Map/fak5-wcft>Squirrel Fur Color map</a> inspiration
 - <a href="https://www.flaticon.com/free-icons/squirrel" title="Squirrel icons">Squirrel icons created by iconixar - Flaticon</a>
 
 ## Future Enhancements
