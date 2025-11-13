@@ -7,8 +7,7 @@
 - Alexander Saadaoui
 
 ## Live Demo
-
-- <a href="[https://www.flaticon.com/free-icons/squirrel](https://project2-elbm.onrender.com/)" title="Project 2">The Squirrel Squad</a>
+- <a href="https://project2-elbm.onrender.com/" title="Project 2">The Squirrel Squad</a>
 
 ## Project Overview
 
@@ -36,4 +35,5 @@
 
 ## Future Enhancements
 
-- List any features you would’ve liked to add if given more time
+- The ability to ‘stack’ different filters for a more specific sorting result, such as adult, above ground, AND gray.
+- Reduce the runtime of the table loading when sorting/include a loading indicator when sorting
