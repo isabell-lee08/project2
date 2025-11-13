@@ -12,12 +12,12 @@ header {
   position: sticky;
   top: 0;
   z-index: 10000;
-  font-family: 'Lucida Handwriting', sans-serif;
 }
 
 h1 {
   font-size: 2.2rem;
   font-weight: bold;
+  font-family: 'Lucida Handwriting', sans-serif;
 
   padding: 20px 0px;
   margin: 0;
