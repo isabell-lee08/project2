@@ -1,12 +1,14 @@
-# MEDP33100 - Project 2 Data Visualization
+<img width="100" height="124" alt="image" src="https://github.com/user-attachments/assets/5e8657bb-9fc5-494a-a828-5ff20a21aba3" /># MEDP33100 - Project 2 Data Visualization
 
 ## Team members
 
-- Add all the names of all the team members
+- Isabell Lee
+- Rebecca Garcia
+- Alexander Saadaoui
 
 ## Live Demo
 
-- Include a link to the live version of the project hosted on Render.
+- <a href="[https://www.flaticon.com/free-icons/squirrel](https://project2-elbm.onrender.com/)" title="Project 2">The Squirrel Squad</a>
 
 ## Project Overview
 
@@ -29,7 +31,8 @@
 
 - List any third-party assets used in the project (e.g., sound effects, images, fonts) and provide proper attribution.
 - Acknowledge any resources, tutorials, or references you used to help complete the project.
-- <a href="https://www.flaticon.com/free-icons/squirrel" title="squirrel icons">Squirrel icons created by iconixar - Flaticon</a>
+- <a href="https://data.cityofnewyork.us/Environment/2018-Central-Park-Squirrel-Census-Squirrel-Data/vfnx-vebw/about_data" title="Squirrel database">Central Park Squirrel Data - NYC Open Data</a>
+- <a href="https://www.flaticon.com/free-icons/squirrel" title="Squirrel icons">Squirrel icons created by iconixar - Flaticon</a>
 
 ## Future Enhancements
 
